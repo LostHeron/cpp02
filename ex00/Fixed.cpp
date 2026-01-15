@@ -58,5 +58,20 @@ int		Fixed::getRawBits(void) const
 
 void	Fixed::setRawBits(int newValue)
 {
+	std::cout << "changing '" << this->name << "' value from "
+		<< this->value << " to " << newValue << std::endl;
 	this->value = newValue;
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed)
+{
+	os << "Fixed '" << fixed.getName() << "' value is "
+		<< fixed.getRawBits();
+	return (os);
+
+}
+
+std::string	Fixed::getName(void) const
+{
+	return (this->name);
 }

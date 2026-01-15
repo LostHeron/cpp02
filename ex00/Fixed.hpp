@@ -14,6 +14,7 @@
 # define FIXED_HPP
 
 #include <string>
+#include <ostream>
 
 class Fixed
 {
@@ -27,11 +28,14 @@ class Fixed
 		int		getRawBits(void) const;
 		void	setRawBits(int newValue);
 
+		std::string	getName(void) const;
+
 	private:
 		int					value;
 		std::string			name;
 		static const int	fractional_bits = 8;
 };
 		
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif
