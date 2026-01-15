@@ -20,7 +20,7 @@ Fixed::Fixed(): value(0), name("NoName")
 		<< std::endl;	
 }
 
-Fixed::Fixed(std::string newName): value(0), name(newName)
+Fixed::Fixed(const std::string& newName): value(0), name(newName)
 {
 	std::cout << "Fixed '" << this->name << "' default constructor called"
 		<< std::endl;	

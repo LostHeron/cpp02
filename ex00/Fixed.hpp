@@ -20,7 +20,7 @@ class Fixed
 {
 	public:
 		Fixed();
-		Fixed(std::string);
+		Fixed(const std::string& newName);
 		Fixed(const Fixed& other);
 		Fixed&	operator=(const Fixed& other);
 		~Fixed();
