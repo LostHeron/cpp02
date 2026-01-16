@@ -97,4 +97,71 @@ int	main(void)
 	std::cout << fixed_assign << std::endl;
 	NL;
 	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	{
+	Fixed fixed_float((float)1.5, "fixed_float");
+	std::cout << "fixed_float.toInt() = " << fixed_float.toInt() << std::endl;
+	std::cout << fixed_float << std::endl;
+	fixed_float.showBits();
+	NL;
+	fixed_float.setRawBits(255);
+	fixed_float.showBits();
+	std::cout << fixed_float << std::endl;
+	NL;
+	fixed_float.setRawBits(-2147483393);
+	fixed_float.showBits();
+	std::cout << fixed_float << std::endl;
+	NL;
+	fixed_float.setRawBits(-1);
+	fixed_float.showBits();
+	std::cout << fixed_float << std::endl;
+	NL;
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	{
+	Fixed fixed_int(15, "fixed_int");
+	std::cout << "fixed_int.toInt() = " << fixed_int.toInt() << std::endl;
+	std::cout << fixed_int << std::endl;
+	fixed_int.showBits();
+	NL;
+	fixed_int.setRawBits(255);
+	fixed_int.showBits();
+	std::cout << fixed_int << std::endl;
+	NL;
+	fixed_int.setRawBits(-2147483393);
+	fixed_int.showBits();
+	std::cout << fixed_int << std::endl;
+	NL;
+	fixed_int.setRawBits(-1);
+	fixed_int.showBits();
+	std::cout << fixed_int << std::endl;
+	NL;
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	Fixed a;
+Fixed const b( 10 );
+Fixed const c( 42.42f );
+Fixed const d( b );
+a = Fixed( 1234.4321f );
+std::cout << "a is " << a << std::endl;
+std::cout << "b is " << b << std::endl;
+std::cout << "c is " << c << std::endl;
+std::cout << "d is " << d << std::endl;
+std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 }
+

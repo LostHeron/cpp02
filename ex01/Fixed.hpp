@@ -34,6 +34,11 @@ class Fixed
 
 		std::string	getName(void) const;
 
+		float	toFloat(void) const;
+		int		toInt(void)	const;
+
+		void	showBits(void);
+
 	private:
 		int					value;
 		std::string			name;
