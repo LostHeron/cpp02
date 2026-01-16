@@ -12,6 +12,7 @@
 
 #include "Fixed.hpp"
 #include <iostream>
+#include <cmath>
 #include <string>
 
 Fixed::Fixed(): value(0), name("NoName")
@@ -35,7 +36,6 @@ Fixed::Fixed(const int newValue, const std::string& newName):
 	std::cout << "Fixed '" << this->name << "' constructor with Int "
 		<< newValue << " called" << std::endl;	
 }
-#include <cmath>
 
 Fixed::Fixed(const float newValue):
 	value(roundf(newValue * (float)(1 << fractionalBits))),
