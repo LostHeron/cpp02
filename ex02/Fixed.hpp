@@ -26,7 +26,16 @@ class Fixed
 		Fixed(const float newValue, const std::string& newName);
 		Fixed(const std::string& newName);
 		Fixed(const Fixed& other);
+		Fixed(const Fixed& other, const std::string& newName);
 		Fixed&	operator=(const Fixed& other);
+		// prefix operator (++Fixed);
+		Fixed&	operator++();
+		// postfix operator (Fixed++)
+		Fixed	operator++(int);
+		// prefix decrement operator:
+		Fixed&	operator--();
+		// postfix decrement operator:
+		Fixed	operator--(int);
 		~Fixed();
 
 		int		getRawBits(void) const;
@@ -37,14 +46,20 @@ class Fixed
 		float	toFloat(void) const;
 		int		toInt(void)	const;
 
-		void	showBits(void);
+		void	showBits(void) const;
+
+		static int	getFractionalBits();
+		static const Fixed&	min(const Fixed& f1, const Fixed& f2);
+		static Fixed&	min(Fixed& f1, Fixed& f2);
+		static const Fixed&	max(const Fixed& f1, const Fixed& f2);
+		static Fixed&	max(Fixed& f1, Fixed& f2);
 
 	private:
 		int					value;
 		std::string			name;
 		static const int	fractionalBits = 8;
 };
-		
+
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 // comparison operator overload

@@ -55,11 +55,20 @@ Fixed::Fixed(const float newValue, const std::string& newName):
 
 Fixed::Fixed(const std::string& newName): value(0), name(newName)
 {
-	std::cout << "Fixed '" << this->name << "' default constructor called"
+	std::cout << "Fixed '" << this->name << "' constructor with name only called"
 		<< std::endl;	
 }
 
 Fixed::Fixed(const Fixed& other): value(other.value), name(other.name + "_copy")
+{
+	std::cout << "Fixed '" << this->name << "' copy constructor called using '"
+		<< other.name << "' data !"
+		<< std::endl;
+}
+
+Fixed::Fixed(const Fixed& other, const std::string& newName):
+	value(other.value),
+	name(newName)
 {
 	std::cout << "Fixed '" << this->name << "' copy constructor called using '"
 		<< other.name << "' data !"
@@ -110,7 +119,7 @@ int		Fixed::toInt(void)	const
 	return (res);
 }
 
-void	Fixed::showBits(void)
+void	Fixed::showBits(void) const
 {
 	unsigned int	value_copy = this->value;
 	std::string	str;
@@ -195,15 +204,94 @@ Fixed	operator-(const Fixed& left, const Fixed& right)
 	return (Fixed(left.getRawBits() - right.getRawBits(), "operator-"));
 }
 
-/*
 Fixed	operator*(const Fixed& left, const Fixed& right)
 {
-	// ERROR
+	long long a = (long long) left.getRawBits() * right.getRawBits();
+	a = a / (1 << Fixed::getFractionalBits());
+	Fixed ret("operator*");
+	ret.setRawBits(a);
+	//ret.showBits();
+	return (ret);
 }
-*/
 
 Fixed	operator/(const Fixed& left, const Fixed& right)
 {
-	//long long res = (long long)left.getRawBits() * (long long) right.getRawBits();
 	return (Fixed((float)left.getRawBits() / right.getRawBits(), "operator/"));
 }
+
+int	Fixed::getFractionalBits()
+{
+	return (Fixed::fractionalBits);
+}
+
+// prefix increment (++Fixed)
+Fixed&	Fixed::operator++()
+{
+	this->value++;
+	return (*this);
+}
+
+// postfix increment (Fixed++);
+Fixed	Fixed::operator++(int)
+{
+	Fixed old(*this);
+	this->value++;
+	return (old);
+}
+
+//prefix decrement (--Fixed)
+Fixed&	Fixed::operator--()
+{
+	this->value--;
+	return (*this);
+}
+
+//postfix decrement (Fixed--)
+Fixed	Fixed::operator--(int)
+{
+	Fixed	old(*this);
+	this->value--;
+	return (old);
+}
+
+const Fixed&	Fixed::min(const Fixed& f1, const Fixed& f2)
+{
+	std::cout << "calling const Fixed::min" << std::endl;
+	if (f1 < f2)
+		return (f1);
+	else
+		return (f2);
+}
+
+const Fixed&	Fixed::max(const Fixed& f1, const Fixed& f2)
+{
+	std::cout << "calling const Fixed::max" << std::endl;
+	if (f1 > f2)
+		return (f1);
+	else
+		return (f2);
+}
+
+Fixed&	Fixed::min(Fixed& f1, Fixed& f2)
+{
+	std::cout << "calling Fixed::min (no const)" << std::endl;
+	if (f1 < f2)
+		return (f1);
+	else
+		return (f2);
+}
+
+Fixed&	Fixed::max(Fixed& f1, Fixed& f2)
+{
+	std::cout << "calling Fixed::max (no const)" << std::endl;
+	if (f1 > f2)
+		return (f1);
+	else
+		return (f2);
+}
+
+/*
+static Fixed&	Fixed::min(const Fixed f1, const Fixed f2);
+static Fixed&	Fixed::max(const Fixed& f1, const Fixed& f2);
+static Fixed&	Fixed::max(const Fixed f1, const Fixed f2);
+*/

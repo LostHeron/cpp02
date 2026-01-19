@@ -15,18 +15,132 @@
 
 #define NL std::cout << std::endl
 
+/*
 int	main(void)
 {
-	Fixed a(256.0f, "a");
-	Fixed b(256, "b");
+	std::cout << "TEST DIVITION : / \n" << std::endl;
+	{
+	Fixed a(3, "a");
+	Fixed b(2, "b");
 	Fixed c("c");
 
-	a.setRawBits(0b1100000000); // value 3 in fixed
 	a.showBits();
-	b.setRawBits(0b1000000000); // vlaue 2 in fixed
 	b.showBits();
+	std::cout << "c = a / b = 3 / 2 and should be 1.5 !" << std::endl;
 	c = a / b; // c should be 1.5 in fixed
 	std::cout << "a / b : \n" << c << std::endl;
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+
+	std::cout << "TEST MULITPLICATION : * \n" << std::endl;
+	{
+		Fixed a(2896, "a_2896");
+		a.showBits();
+		Fixed b("b=a*a");
+		b.showBits();
+
+		b = a * a;
+
+		std::cout << b << std::endl;
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	std::cout << "TEST MULITPLICATION : * \n" << std::endl;
+	{
+		Fixed a("a_0.00000010");
+		a.setRawBits(0b10);
+		a.showBits();
+		Fixed b("b=0.10000000");
+		b.setRawBits(0b10000000);
+		b.showBits();
+		Fixed c("c=a*b");
+
+		c = a * b;
+		std::cout << c << std::endl;
+		c.showBits();
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	std::cout << "TEST increment / decrement operator: * \n" << std::endl;
+
+	{
+		Fixed	a(2, "a");
+		Fixed&	b = a;
+		std::cout << ++a << std::endl;
+		std::cout << b << std::endl;
+		std::cout << a++ << std::endl;
+		std::cout << a << std::endl;
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	std::cout << "test of min and max function (no const)" << std::endl;
+
+	{
+		Fixed	a(2, "a(2)");
+		Fixed	b(3, "b(3)");
+
+		std::cout << a << std::endl;
+		std::cout << b << std::endl;
+
+		Fixed	greater_no_ref("greater_no_ref");
+		greater_no_ref = Fixed::max(a,b);
+
+		std::cout << greater_no_ref << std::endl;
+
+		Fixed&	greater_ref(Fixed::min(a,b));
+		std::cout << "greater_ref : " << greater_ref << std::endl;
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	std::cout << "test of min and max function (using const)" << std::endl;
+
+
+	{
+		const Fixed	a(2, "a(2)");
+		const Fixed	b(3, "b(3)");
+
+		std::cout << a << std::endl;
+		std::cout << b << std::endl;
+
+		Fixed	greater_no_ref("greater_no_ref");
+		greater_no_ref = Fixed::max(a,b);
+
+		std::cout << greater_no_ref << std::endl;
+
+		const Fixed&	greater_ref(Fixed::min(a,b));
+		std::cout << "greater_ref : " << greater_ref << std::endl;
+	}
+}
+*/
+
+int main( void )
+{
+	Fixed a("a");
+	Fixed b( Fixed( 5.05f, "5.05f" ) * Fixed( 2, "2" ), "b");
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return 0;
 }
 
 /*
