@@ -132,7 +132,7 @@ int	main(void)
 int main( void )
 {
 	Fixed a("a");
-	Fixed b( Fixed( 5.05f, "5.05f" ) * Fixed( 2, "2" ), "b");
+	Fixed const b( Fixed( 5.05f, "5.05f" ) * Fixed( 2, "2" ), "b");
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
