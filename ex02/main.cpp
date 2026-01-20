@@ -15,7 +15,6 @@
 
 #define NL std::cout << std::endl
 
-/*
 int	main(void)
 {
 	std::cout << "TEST DIVITION : / \n" << std::endl;
@@ -36,7 +35,7 @@ int	main(void)
 	NL;
 
 
-	std::cout << "TEST MULITPLICATION : * \n" << std::endl;
+	std::cout << "TEST MULITPLICATION high : * \n" << std::endl;
 	{
 		Fixed a(2896, "a_2896");
 		a.showBits();
@@ -52,7 +51,7 @@ int	main(void)
 	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	NL;
 
-	std::cout << "TEST MULITPLICATION : * \n" << std::endl;
+	std::cout << "TEST MULITPLICATION low : * \n" << std::endl;
 	{
 		Fixed a("a_0.00000010");
 		a.setRawBits(0b10);
@@ -71,6 +70,64 @@ int	main(void)
 	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 	NL;
 
+	std::cout << "TEST MULITPLICATION very low : * \n" << std::endl;
+	{
+		Fixed a("a_0.00000010");
+		a.setRawBits(0b10);
+		a.showBits();
+		Fixed b("b=0.010000000");
+		b.setRawBits(0b1000000);
+		b.showBits();
+		Fixed c("c=a*b");
+
+		c = a * b;
+		std::cout << c << std::endl;
+		c.showBits();
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+
+	std::cout << "TEST ADDITION : + \n" << std::endl;
+	{
+		Fixed a(3, "a");
+		Fixed b(4, "b");
+		Fixed c("c");
+
+		std::cout << a << std::endl;
+		std::cout << b << std::endl;
+		std::cout << "c = a + b" << std::endl;
+		c = a + b;
+		std::cout << c << std::endl;
+		c.showBits();
+	}
+
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+
+	std::cout << "TEST SUBSTRACTION : - \n" << std::endl;
+	{
+		Fixed a(3, "a");
+		Fixed b(4, "b");
+		Fixed c("c");
+
+		std::cout << a << std::endl;
+		std::cout << b << std::endl;
+		std::cout << "c = a - b" << std::endl;
+		c = a - b;
+		std::cout << c << std::endl;
+		c.showBits();
+	}
+
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
 	std::cout << "TEST increment / decrement operator: * \n" << std::endl;
 
 	{
@@ -79,6 +136,8 @@ int	main(void)
 		std::cout << ++a << std::endl;
 		std::cout << b << std::endl;
 		std::cout << a++ << std::endl;
+		std::cout << a << std::endl;
+		std::cout << a-- << std::endl;
 		std::cout << a << std::endl;
 	}
 
@@ -126,21 +185,50 @@ int	main(void)
 		const Fixed&	greater_ref(Fixed::min(a,b));
 		std::cout << "greater_ref : " << greater_ref << std::endl;
 	}
-}
-*/
 
-int main( void )
-{
-	Fixed a("a");
-	Fixed const b( Fixed( 5.05f, "5.05f" ) * Fixed( 2, "2" ), "b");
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
+	NL;
+	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	NL;
+
+	std::cout << "TEST == " << std::endl;
+	{
+		const Fixed	a(2, "a");
+		const Fixed	b(3.5f, "b");
+		const Fixed	c(3.5f, "c");
+
+		std::cout << a << std::endl;
+		std::cout << b << std::endl;
+		std::cout << c << std::endl;
+
+		NL;
+
+		if (a == b)
+			std::cout << "a is equal to b" << std::endl;
+		else
+			std::cout << "a is not equal to b" << std::endl;
+
+		if (b == c)
+			std::cout << "b is equal to c" << std::endl;
+		else
+			std::cout << "b is not equal to c" << std::endl;
+
+		if (a > b)
+			std::cout << "a is stricly greater than b" << std::endl;
+		else 
+			std::cout << "a is not stricly greater than b" << std::endl;
+
+		if (a != b)
+			std::cout << "a is different than b" << std::endl;
+		else
+			std::cout << "a is not different than b" << std::endl;
+
+		if (c != b)
+			std::cout << "c is different than b" << std::endl;
+		else
+			std::cout << "c is not different than b" << std::endl;
+		NL;
+	}
+
 }
 
 /*

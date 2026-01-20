@@ -219,6 +219,11 @@ Fixed	operator*(const Fixed& left, const Fixed& right)
 
 Fixed	operator/(const Fixed& left, const Fixed& right)
 {
+	if (right.getRawBits() == 0)
+	{
+		std::cout << "division by 0" << std::endl;
+		return (left);
+	}
 	return (Fixed((float)left.getRawBits() / right.getRawBits(),
 			   left.getName() + "/" + right.getName()));
 }
