@@ -196,16 +196,23 @@ bool operator!=(const Fixed& left, const Fixed &right)
 
 Fixed	operator+(const Fixed& left, const Fixed& right)
 {
-	return (Fixed(left.getRawBits() + right.getRawBits(), "operator+"));
+	Fixed a(left.getName() + " + " + right.getName());
+	a.setRawBits(left.getRawBits() + right.getRawBits());
+	return (a);
 }
 
 Fixed	operator-(const Fixed& left, const Fixed& right)
 {
-	return (Fixed(left.getRawBits() - right.getRawBits(), "operator-"));
+	std::cout << "in fixed operator '-'" << std::endl;
+	Fixed a(left.getName() + " - " + right.getName());
+	a.setRawBits(left.getRawBits() - right.getRawBits());
+	return (a);
 }
 
 Fixed	operator*(const Fixed& left, const Fixed& right)
 {
+	std::cout << "in Fixed operator '*', getting '" << left.getName()
+		<< "' * '" << right.getName() << "'" << std::endl;
 	long long a = (long long) left.getRawBits() * right.getRawBits();
 	a = a / (1 << Fixed::getFractionalBits());
 	Fixed ret("operator*");
