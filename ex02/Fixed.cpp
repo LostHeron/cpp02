@@ -196,27 +196,31 @@ bool operator!=(const Fixed& left, const Fixed &right)
 
 Fixed	operator+(const Fixed& left, const Fixed& right)
 {
-	return (Fixed(left.getRawBits() + right.getRawBits(), "operator+"));
+	Fixed	add(left.getName() + "+" + right.getName());
+	add.setRawBits(left.getRawBits() + right.getRawBits());
+	return (add);
 }
 
 Fixed	operator-(const Fixed& left, const Fixed& right)
 {
-	return (Fixed(left.getRawBits() - right.getRawBits(), "operator-"));
+	Fixed	sub(left.getName() + "-" + right.getName());
+	sub.setRawBits(left.getRawBits() - right.getRawBits());
+	return (sub);
 }
 
 Fixed	operator*(const Fixed& left, const Fixed& right)
 {
 	long long a = (long long) left.getRawBits() * right.getRawBits();
 	a = a / (1 << Fixed::getFractionalBits());
-	Fixed ret("operator*");
-	ret.setRawBits(a);
-	//ret.showBits();
-	return (ret);
+	Fixed mult(left.getName() + "*" + right.getName());
+	mult.setRawBits(a);
+	return (mult);
 }
 
 Fixed	operator/(const Fixed& left, const Fixed& right)
 {
-	return (Fixed((float)left.getRawBits() / right.getRawBits(), "operator/"));
+	return (Fixed((float)left.getRawBits() / right.getRawBits(),
+			   left.getName() + "/" + right.getName()));
 }
 
 int	Fixed::getFractionalBits()
