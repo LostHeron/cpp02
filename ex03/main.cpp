@@ -82,47 +82,17 @@ int	main(void)
 	Point a(10, 10, "a");
 	Point b(10, 0, "b");
 	Point c(0, 10, "c");
-	Point p(7, 7, "p");
+	Point p(9, 5, "p");
 	
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::cout << c << std::endl;
 	std::cout << p << std::endl;
+
 	if (bsp(a, b, c, p) == true)
 		std::cout << "--------->p is inside triangle abc" << std::endl;
 	else
 		std::cout << "--------->p is outside triangle abc" << std::endl;
 	}
 	std::cout << "\n------ end -----\n\n\n" << std::endl;
-
-
-	/*
-	Point a(Fixed(0, "tmp_ax"), Fixed(0,"tmp_ay"), "a_0_0");
-	std::cout << a << std::endl;
-	*/
-		 /*
-	Point b(10, 0, "b");
-	Point c(0, 10, "c");
-	Point p1(2,2, "p1");
-	Point p2(7,7, "p2");
-	Point p3(0,0, "p3");
-
-	if (bsp(a, b, c, p1) == true)
-		std::cout << "\npoint p1 is INSIDE triangle" << std::endl;
-	else
-		std::cout << "\npoint p1 is OUTSIDE triangle" << std::endl;
-	std::cout << std::endl;
-
-	if (bsp(a, b, c, p2) == true)
-		std::cout << "\npoint p2 is INSIDE triangle" << std::endl;
-	else
-		std::cout << "\npoint p2 is OUTSIDE triangle" << std::endl;
-	std::cout << std::endl;
-
-	if (bsp(a, b, c, p3) == true)
-		std::cout << "\npoint p3 is INSIDE triangle" << std::endl;
-	else
-		std::cout << "\npoint p3 is OUTSIDE triangle" << std::endl;
-	std::cout << std::endl;
-	*/
 }

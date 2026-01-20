@@ -196,35 +196,39 @@ bool operator!=(const Fixed& left, const Fixed &right)
 
 Fixed	operator+(const Fixed& left, const Fixed& right)
 {
-	Fixed a(left.getName() + " + " + right.getName());
-	a.setRawBits(left.getRawBits() + right.getRawBits());
-	return (a);
+	Fixed	add(left.getName() + "+" + right.getName());
+	add.setRawBits(left.getRawBits() + right.getRawBits());
+	return (add);
 }
 
 Fixed	operator-(const Fixed& left, const Fixed& right)
 {
-	std::cout << "in fixed operator '-'" << std::endl;
-	Fixed a(left.getName() + " - " + right.getName());
-	a.setRawBits(left.getRawBits() - right.getRawBits());
-	return (a);
+	Fixed	sub(left.getName() + "-" + right.getName());
+	sub.setRawBits(left.getRawBits() - right.getRawBits());
+	return (sub);
 }
 
 Fixed	operator*(const Fixed& left, const Fixed& right)
 {
-	std::cout << "in Fixed operator '*', getting '" << left.getName()
-		<< "' * '" << right.getName() << "'" << std::endl;
 	long long a = (long long) left.getRawBits() * right.getRawBits();
 	a = a / (1 << Fixed::getFractionalBits());
-	Fixed ret("operator*");
-	ret.setRawBits(a);
-	//ret.showBits();
-	return (ret);
+	Fixed mult(left.getName() + "*" + right.getName());
+	mult.setRawBits(a);
+	return (mult);
 }
 
 Fixed	operator/(const Fixed& left, const Fixed& right)
 {
-	return (Fixed((float)left.getRawBits() / right.getRawBits(), "operator/"));
+	if (right.getRawBits() == 0)
+	{
+		std::cout << "error: division by 0" << std::endl;
+		return (left);
+	}
+	return (Fixed((float)left.getRawBits() / right.getRawBits(),
+			   left.getName() + "/" + right.getName()));
 }
+
+// get fractionalBits
 
 int	Fixed::getFractionalBits()
 {
@@ -261,6 +265,8 @@ Fixed	Fixed::operator--(int)
 	return (old);
 }
 
+// min / max function 
+
 const Fixed&	Fixed::min(const Fixed& f1, const Fixed& f2)
 {
 	std::cout << "calling const Fixed::min" << std::endl;
@@ -296,9 +302,3 @@ Fixed&	Fixed::max(Fixed& f1, Fixed& f2)
 	else
 		return (f2);
 }
-
-/*
-static Fixed&	Fixed::min(const Fixed f1, const Fixed f2);
-static Fixed&	Fixed::max(const Fixed& f1, const Fixed& f2);
-static Fixed&	Fixed::max(const Fixed f1, const Fixed f2);
-*/
